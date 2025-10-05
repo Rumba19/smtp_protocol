@@ -5,15 +5,15 @@ endmsg = "\r\n.\r\n"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
 # Fill in start
-mailserver = "smtp.gmail.com"  # You can also try: "smtp-mail.outlook.com", "smtp.mail.yahoo.com"
+mailserver = ("localhost", 1025)
 # Fill in end
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 # Fill in start
 clientSocket = socket(AF_INET, SOCK_STREAM)
 # Connect to mail server on port 25 (standard SMTP port) or 587 (submission port)
-# Note: Many servers now require port 587 or 465
-clientSocket.connect((mailserver, 587))
+ 
+clientSocket.connect(mailserver)
 # Fill in end
 
 recv = clientSocket.recv(1024).decode()
@@ -31,7 +31,7 @@ if recv1[:3] != '250':
 
 # Send MAIL FROM command and print server response.
 # Fill in start
-mailFromCommand = 'MAIL FROM:<your_email@example.com>\r\n'
+mailFromCommand = 'MAIL FROM:<brumba30752@ucumberlands.edu>\r\n'
 clientSocket.send(mailFromCommand.encode())
 recv2 = clientSocket.recv(1024).decode()
 print(recv2)
@@ -41,7 +41,7 @@ if recv2[:3] != '250':
 
 # Send RCPT TO command and print server response.
 # Fill in start
-rcptToCommand = 'RCPT TO:<recipient_email@example.com>\r\n'
+rcptToCommand = 'RCPT TO:<brumba30752@ucumberlands.edu>\r\n'
 clientSocket.send(rcptToCommand.encode())
 recv3 = clientSocket.recv(1024).decode()
 print(recv3)
@@ -61,6 +61,9 @@ if recv4[:3] != '354':
 
 # Send message data.
 # Fill in start
+headers = "Subject: SMTP Lab test\r\nFrom: brumba30752@ucumberlands.edu\r\nTo: brumba30752@ucumberlands.edu\r\n"
+clientSocket.send(headers.encode())
+clientSocket.send(("\r\n").encode())
 clientSocket.send(msg.encode())
 # Fill in end
 
