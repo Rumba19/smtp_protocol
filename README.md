@@ -50,9 +50,9 @@ The code is configured to use a **localhost test server** by default.
 250 Message accepted
 221 Bye
 ```
-[clientside](client.png)
+![clientside](client.png)
 
-[server](server.png)
+![server](server.png)
 
 ## Troubleshooting
 
