@@ -11,7 +11,7 @@ A simple Python implementation of an SMTP mail client using raw socket programmi
 
 Clone the repository:
 ```bash
-git clone hhttps://github.com/Rumba19/smtp_protocol
+git clone https://github.com/Rumba19/smtp_protocol
 cd smtp_protocol
 ```
 
